@@ -7,3 +7,10 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 ## Page Routing 
 
 - Page routing is all based on file path inside of the project which is kinda of SUPER easy IMO.
+
+- You can also use Link components in nextJS too
+
+### Extra info 
+- In nextJS , all components are server components by default , (They can't use useState , useEffect , usePathname) , You need to specifically say 'use client' to make it a client component   . 
+
+
