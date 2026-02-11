@@ -8,11 +8,17 @@ import { fetchRevenue , fetchLatestInvoices,fetchCardData } from '@/app/lib/data
 export default async function Page() {
 
   // 2. adding the fetchrevnue component . 
-  const revenue = await fetchRevenue();
-  const latestInvoices = await fetchLatestInvoices();
-  const cardData = await fetchCardData();
-  const { numberOfCustomers, numberOfInvoices, totalPaidInvoices, totalPendingInvoices } =
-    cardData;
+  // Fire off all promises at the same time
+  const data = await Promise.all([
+    fetchRevenue(),
+    fetchLatestInvoices(),
+    fetchCardData(),
+  ]);
+
+  // Destructure the results from the array in the same order you passed them
+  const [revenue, latestInvoices, cardData] = data;
+
+  const { numberOfCustomers, numberOfInvoices, totalPaidInvoices, totalPendingInvoices } = cardData;
   //The page is an async server component. This allows you to use await to fetch data.
   return (
     <main>
