@@ -3,8 +3,12 @@ import { Card } from '@/app/dashboard/cards';
 import RevenueChart from '@/app/dashboard/revenue-chart';
 import LatestInvoices from '@/app/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
+import { fetchRevenue } from '@/app/lib/data';
  
 export default async function Page() {
+
+  // 2. adding the fetchrevnue component . 
+  const revenue = await fetchRevenue();
   //The page is an async server component. This allows you to use await to fetch data.
   return (
     <main>
@@ -22,7 +26,7 @@ export default async function Page() {
         /> */}
       </div>
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
-        {/* <RevenueChart revenue={revenue}  /> */}
+        <RevenueChart revenue={revenue}  />
         {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
       </div>
     </main>
